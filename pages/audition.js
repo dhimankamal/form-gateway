@@ -1,13 +1,29 @@
 import React from 'react'
 
-export default function Contact() {
+export default function Audition() {
   return (
    
     <>
-     <div className='py-20 space-y-10 px-10 lg:px-80'>
-        <h2 className='text-4xl font-semibold'>Contact Us</h2>
+     <div className='py-20 space-y-10 px-10 lg:px-80'> 
+        <h2 className='text-4xl font-semibold'>Audition Form</h2>
+        <p>You can give this singing audition through your phone sitting at home. Friends, if you really think that you are a good singer and you can go ahead then only give this audition otherwise you can leave it.</p>
+        <p>If you think you are a good singer then you can give this audition. This audition process is online</p>
         <form>
-         
+          <div className='relative z-0 w-full mb-6 group'>
+            <input
+              type='email'
+              name='floating_email'
+              className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+              placeholder=' '
+              required=''
+            />
+            <label
+              htmlFor='floating_email'
+              className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+            >
+              Email address
+            </label>
+          </div>
 
           <div className='grid xl:grid-cols-2 xl:gap-6'>
             <div className='relative z-0 w-full mb-6 group'>
@@ -62,30 +78,28 @@ export default function Contact() {
               </label>
             </div>
             <div className='relative z-0 w-full mb-6 group'>
-         
-            <input
-              type='email'
-              name='floating_email'
-              className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-              placeholder=' '
-              required=''
-            />
-            <label
-              htmlFor='floating_email'
-              className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
-            >
-              Email address
-            </label>
-          </div>
-  
-
+              <input
+                type='text'
+                name='floating_company'
+                id='floating_company'
+                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                placeholder=' '
+                required=''
+              />
+              <label
+                htmlFor='floating_company'
+                className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+              >
+               Address
+              </label>
+            </div>
             <div className="relative z-0 w-full mb-6 group">
               <>
                 <label
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   htmlFor="user_avatar"
                 >
-                  Upload file
+                  Upload Audio Not More Than 1 Minute
                 </label>
                 <input
                   className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
