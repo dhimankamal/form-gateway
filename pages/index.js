@@ -1,4 +1,4 @@
-export default function Home () {
+export default function Home() {
   return (
     <>
       <div className='py-20 space-y-10'>
@@ -8,7 +8,7 @@ export default function Home () {
             <input
               type='email'
               name='floating_email'
-              className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+              className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
               placeholder=' '
               required=''
             />
@@ -26,7 +26,7 @@ export default function Home () {
                 type='text'
                 name='floating_first_name'
                 id='floating_first_name'
-                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required=''
               />
@@ -42,7 +42,7 @@ export default function Home () {
                 type='text'
                 name='floating_last_name'
                 id='floating_last_name'
-                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required=''
               />
@@ -61,7 +61,7 @@ export default function Home () {
                 pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                 name='floating_phone'
                 id='floating_phone'
-                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required=''
               />
@@ -77,7 +77,7 @@ export default function Home () {
                 type='text'
                 name='floating_company'
                 id='floating_company'
-                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required=''
               />
@@ -88,6 +88,30 @@ export default function Home () {
                 Company (Ex. Google)
               </label>
             </div>
+            <div className="relative z-0 w-full mb-6 group">
+              <>
+                <label
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  htmlFor="user_avatar"
+                >
+                  Upload file
+                </label>
+                <input
+                  className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                  aria-describedby="user_avatar_help"
+                  id="user_avatar"
+                  type="file"
+                />
+                <div
+                  className="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                  id="user_avatar_help"
+                >
+                  A profile picture is useful to confirm your are logged into your account
+                </div>
+              </>
+
+            </div>
+
           </div>
           <button
             type='submit'
