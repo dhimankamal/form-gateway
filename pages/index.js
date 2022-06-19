@@ -1,9 +1,40 @@
+// For handling input states
+import { useState } from 'react';
+
+// For display toasts  
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+
+
+
 export default function Home() {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [purpose, setPurpose] = useState('');
+  const [message, setMessage] = useState('');
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    console.log({ name, email, purpose, message })
+    const res = await fetch('http://localhost:3000/api/submit-form', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, purpose, message }),
+    });
+    // Success if status code is 201
+    if (res.status === 201) {
+      toast('Thank you for contacting us!', { type: 'success' });
+    } else {
+      toast('Please re-check your inputs.', { type: 'error' });
+    }
+  };
   return (
     <>
       <div className='py-20 space-y-10'>
+      <ToastContainer />
         <h2 className='text-4xl font-semibold'>Submit Form</h2>
-        <form>
+        <form onSubmit={submitForm}>
           <div className='relative z-0 w-full mb-6 group'>
             <input
               type='email'
@@ -11,6 +42,7 @@ export default function Home() {
               className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
               placeholder=' '
               required=''
+              onChange={(e) => setEmail(e.target.value)}
             />
             <label
               htmlFor='floating_email'
@@ -26,6 +58,7 @@ export default function Home() {
                 type='text'
                 name='floating_first_name'
                 id='floating_first_name'
+                onChange={(e) => setName(e.target.value)}
                 className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required=''
@@ -34,7 +67,7 @@ export default function Home() {
                 htmlFor='floating_first_name'
                 className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
               >
-                First name
+               Name
               </label>
             </div>
             <div className='relative z-0 w-full mb-6 group'>
@@ -45,34 +78,35 @@ export default function Home() {
                 className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required=''
+                onChange={(e) => setPurpose(e.target.value)}
               />
               <label
                 htmlFor='floating_last_name'
                 className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
               >
-                Last name
+                Purpose
               </label>
             </div>
           </div>
           <div className='grid xl:grid-cols-2 xl:gap-6'>
             <div className='relative z-0 w-full mb-6 group'>
               <input
-                type='tel'
-                pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+                type='text'
                 name='floating_phone'
                 id='floating_phone'
                 className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                 placeholder=' '
                 required=''
+                onChange={(e) => setMessage(e.target.value)}
               />
               <label
                 htmlFor='floating_phone'
                 className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
               >
-                Phone number (123-456-7890)
+               Message
               </label>
             </div>
-            <div className='relative z-0 w-full mb-6 group'>
+            {/* <div className='relative z-0 w-full mb-6 group'>
               <input
                 type='text'
                 name='floating_company'
@@ -87,8 +121,8 @@ export default function Home() {
               >
                 Company (Ex. Google)
               </label>
-            </div>
-            <div className="relative z-0 w-full mb-6 group">
+            </div> */}
+            {/* <div className="relative z-0 w-full mb-6 group">
               <>
                 <label
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -110,7 +144,7 @@ export default function Home() {
                 </div>
               </>
 
-            </div>
+            </div> */}
 
           </div>
           <button
