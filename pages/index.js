@@ -1,11 +1,14 @@
 // For handling input states
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { useRouter } from 'next/router';
+
+loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 // For display toasts  
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-
-
 
 
 export default function Home() {
@@ -15,26 +18,52 @@ export default function Home() {
   const [purpose, setPurpose] = useState('');
   const [message, setMessage] = useState('');
 
+  const router = useRouter();
+	const { success, canceled } = router.query;
+
+	useEffect(() => {
+		if (success !== undefined || canceled !== undefined) {
+			if (success) {
+				console.log(
+					'Order placed! You will receive an email confirmation.'
+				);
+			}
+
+			if (canceled) {
+				console.log(
+					'Order canceled -- continue to shop around and checkout when you’re ready.'
+				);
+			}
+		}
+	}, [success, canceled]);
+
   const submitForm = async (e) => {
     e.preventDefault();
     console.log({ name, email, purpose, message })
-    const res = await fetch('http://localhost:3000/api/submit-form', {
+
+    const paymentRes = await fetch('/api/checkout_sessions', {
       method: 'POST',
-      body: JSON.stringify({ name, email, purpose, message }),
+      
     });
+    console.log("response payment", paymentRes)
+ 
+    // const res = await fetch('http://localhost:3000/api/submit-form', {
+    //   method: 'POST',
+    //   body: JSON.stringify({ name, email, purpose, message }),
+    // });
     // Success if status code is 201
-    if (res.status === 201) {
-      toast('Thank you for contacting us!', { type: 'success' });
-    } else {
-      toast('Please re-check your inputs.', { type: 'error' });
-    }
+    // if (res.status === 201) {
+    //   toast('Thank you for contacting us!', { type: 'success' });
+    // } else {
+    //   toast('Please re-check your inputs.', { type: 'error' });
+    // }
   };
   return (
     <>
       <div className='py-20 space-y-10'>
       <ToastContainer />
         <h2 className='text-4xl font-semibold'>Submit Form</h2>
-        <form onSubmit={submitForm}>
+        <form action='/api/checkout_sessions' method='POST'>
           <div className='relative z-0 w-full mb-6 group'>
             <input
               type='email'
@@ -106,46 +135,6 @@ export default function Home() {
                Message
               </label>
             </div>
-            {/* <div className='relative z-0 w-full mb-6 group'>
-              <input
-                type='text'
-                name='floating_company'
-                id='floating_company'
-                className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
-                placeholder=' '
-                required=''
-              />
-              <label
-                htmlFor='floating_company'
-                className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
-              >
-                Company (Ex. Google)
-              </label>
-            </div> */}
-            {/* <div className="relative z-0 w-full mb-6 group">
-              <>
-                <label
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  htmlFor="user_avatar"
-                >
-                  Upload file
-                </label>
-                <input
-                  className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                  aria-describedby="user_avatar_help"
-                  id="user_avatar"
-                  type="file"
-                />
-                <div
-                  className="mt-1 text-sm text-gray-500 dark:text-gray-300"
-                  id="user_avatar_help"
-                >
-                  A profile picture is useful to confirm your are logged into your account
-                </div>
-              </>
-
-            </div> */}
-
           </div>
           <button
             type='submit'
