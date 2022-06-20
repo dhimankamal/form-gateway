@@ -1,14 +1,16 @@
 import React from 'react'
+import Link from 'next/link'
 
 export default function Footer () {
   return (
     <>
-      <footer className='p-4 bg-white shadow sm:text-center md:p-6 dark:bg-gray-800'>
+      <footer className='p-4 bg-gray-800 text-white shadow sm:text-center md:p-4 dark:bg-gray-800'>
         <span className='text-sm text-gray-500 sm:text-center dark:text-gray-400'>
           © 2022{' '}
-          <a href='#' className='hover:underline'>
+          <Link href="/">
+          <a className='hover:underline'>
             BigArt
-          </a>
+          </a></Link>
           . All Rights Reserved.
         </span>
         {/* <ul className='flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0'>
