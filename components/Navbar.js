@@ -2,6 +2,27 @@ import React from 'react'
 import Link from 'next/link'
 
 export default function Navbar() {
+// set the target element that will be collapsed or expanded (eg. navbar menu)
+const targetEl = document.getElementById('targetEl');
+
+// optionally set a trigger element (eg. a button, hamburger icon)
+const triggerEl = document.getElementById('triggerEl');
+
+// optional options with default values and callback functions
+const options = {
+  triggerEl: triggerEl,
+  onCollapse: () => {
+      console.log('element has been collapsed')
+  },
+  onExpand: () => {
+      console.log('element has been expanded')
+  },
+  onToggle: () => {
+      console.log('element has been toggled')
+  }
+};
+
+
   return (
     <>
 <nav className='bg-gray-800 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800'>
@@ -23,7 +44,7 @@ export default function Navbar() {
     type='button'
     className='inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
     aria-controls='mobile-menu'
-    aria-expanded='false'
+    aria-expanded='true'
   >
     <span className='sr-only'>Open main menu</span>
     <svg
