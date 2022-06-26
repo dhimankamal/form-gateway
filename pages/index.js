@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import hero from '../images/hero.jpg';
 import rappers from '../images/rappers.png';
+import {useState ,useEffect} from 'react';
+import { useRouter } from 'next/router'
 
 
 export default function Home() {
