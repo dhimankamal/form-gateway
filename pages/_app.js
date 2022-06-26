@@ -13,7 +13,7 @@ function MyApp ({ Component, pageProps }) {
         </Head>
      <div>
       <Navbar />
-      <div className='px-10 lg:px-80'>
+      <div>
       <Component {...pageProps} />
       </div>
      <Footer />
