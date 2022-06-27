@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { useRouter } from 'next/router'
+import { useS3Upload } from 'next-s3-upload';
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -15,7 +16,12 @@ export default function Audition () {
   const [address, setAddress] = useState('')
   const [gender, setGender] = useState('')
   const [age, setAge] = useState('')
-
+  let [imageUrl, setImageUrl] = useState();
+  let { FileInput, openFileDialog, uploadToS3 } = useS3Upload();
+  let handleFileChange = async file => {
+    let { url } = await uploadToS3(file);
+    setImageUrl(url);
+  };
 
   const router = useRouter()
   const { success, canceled } = router.query
@@ -56,6 +62,13 @@ export default function Audition () {
   }
   return (
     <>
+     <div>
+      <FileInput onChange={handleFileChange} />
+
+      <button onClick={openFileDialog}>Upload file</button>
+
+      {imageUrl && <img src={imageUrl} />}
+    </div>
       <div className='py-20 space-y-10 px-10 lg:px-80 bg-gray-100'>
         <h2 className='text-4xl font-semibold'>Audition Form</h2>
         <p>
