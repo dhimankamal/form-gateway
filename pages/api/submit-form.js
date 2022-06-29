@@ -12,7 +12,7 @@ export default async function handler (req, res) {
   }
   try {
     console.log('try')
-    const { name, email, phoneNumber,address,gender,age } = JSON.parse(req.body)
+    const { name, email, phoneNumber,address,gender,age,videoUrl } = JSON.parse(req.body)
     await notion.pages.create({
       parent: {
         database_id: process.env.DATABASE_ID
@@ -63,6 +63,15 @@ export default async function handler (req, res) {
             {
               text: {
                 content: age
+              }
+            }
+          ]
+        },
+        Video: {
+          rich_text: [
+            {
+              text: {
+                content: videoUrl
               }
             }
           ]
