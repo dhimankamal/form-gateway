@@ -2,6 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
 	if (req.method === 'POST') {
+		const { id } = req.query
 		try {
 			const session = await stripe.checkout.sessions.create({
 				line_items: [
@@ -12,8 +13,8 @@ export default async function handler(req, res) {
 				],
 				payment_method_types: ['card'],
 				mode: 'payment',
-				success_url: `${req.headers.origin}/?success=true&session_id={CHECKOUT_SESSION_ID}`,
-				cancel_url: `${req.headers.origin}/?canceled=true`,
+				success_url: `${req.headers.origin}/audition?success=true&session_id={CHECKOUT_SESSION_ID}&id=${id}`,
+				cancel_url: `${req.headers.origin}/audition?canceled=true&id=${id}`,
 			});
 			res.redirect(303, session.url);
 		} catch (err) {
